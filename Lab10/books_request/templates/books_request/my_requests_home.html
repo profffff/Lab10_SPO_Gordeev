@@ -1,0 +1,43 @@
+{% extends 'main/layout.html' %}
+{% load static %}
+
+
+{% block title %}<title>databasehome</title>{% endblock %}
+
+
+{% block content %}
+<link rel="stylesheet" href="{% static 'database/css/database.css' %}">
+<div class="books_in_column">
+    <h1>Requests</h1>
+    <br>
+    {% if my_books %}
+        {% for request in my_books %}
+     <h1>{{ request.user_id }} : {{ request.date_added }} : {{ request.status }}</h1>
+    {% if user.is_staff %}
+        {% if request.status == "Processing" %}
+    <a href="{% url 'request_accept' request.book_id request.user_id %}" class="btn btn-info">Accept</a>
+    <a href="{% url 'request_deny' request.book_id request.user_id %}" class="btn btn-danger">Deny</a>
+        {% elif request.status == "Returned" %}
+    <a href="{% url 'return_accept' request.book_id request.user_id%}" class="btn btn-info">Accept return</a>
+        {% endif %}
+    {% endif %}
+        {% endfor %}
+    {% endif %}
+
+    {% if real_articles %}
+    <br>
+    <h1>Books:</h1>
+    <br>
+        {% for article in real_articles %}
+     <h1>{{ article.autor }} : {{ article.title }}</h1>
+    <a href="{% url 'withdraw_book' article.id %}" class="btn btn-warning">Withdraw the book</A>
+    <!Допилить ссылку на скачивание>
+    <a href="{{ MEDIA_URL }}Lab10/articles_pdfs/xxx.pdf" download="Name.pdf">
+  <button type="button">Download PDF</button>
+    </a>
+        {% endfor %}
+    {% endif %}
+
+
+</div>
+{% endblock %}

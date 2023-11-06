@@ -1,0 +1,73 @@
+body {
+background: #2c2c2c;
+}
+
+aside {
+    float: left;
+    background: #181818;
+    width: 30%;
+    padding: 2.5%;
+    height: 100vh;
+    color: #fff;
+    border-right: 5px solid #4d4d4d;
+}
+
+aside img {
+    width: 195px;
+    float: left;
+    display: block;
+}
+
+aside .logo {
+    font-size: 28px;
+    margin-left: 10px;
+    font-weight: bold;
+    position: relative;
+    top: 15px;
+    display: block;
+}
+
+aside .user_info {
+    font-size: 18px;
+    margin-left: 10px;
+    font-weight: bold;
+    position: relative;
+    top: 30px;
+    display: block;
+}
+
+aside h3 {
+    margin-top: 50px;
+    font-size: 28px;
+    margin-left: 10px;
+}
+
+
+aside ul {
+    list-style: none;
+}
+
+aside ul li {
+color: #fff;
+display: block;
+margin-top: 20px;
+transition: all .6s ease;
+}
+
+aside ul li:hover, aside ul a:hover {
+color: #eb5959;
+text-decoration: none;
+transform: scale(1.08);
+}
+
+main .features {
+float: center;
+color: #fff;
+margin-top: 0px;
+text-align: center;
+width: 75%;
+}
+
+main .features h1 {font-size: 50px;}
+
+

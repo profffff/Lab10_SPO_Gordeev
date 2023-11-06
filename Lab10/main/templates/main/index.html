@@ -1,0 +1,17 @@
+{% extends 'main/layout.html' %}
+
+{% block title %}<title>main</title>{% endblock %}
+
+{% block content %}
+<div class="features">
+    <br>
+    <h1>{{ title }}</h1>
+    <button class="btn btn-warning">To about</button>
+
+    {% for el in values %}
+    <p>{{ el }}</p>
+    {% endfor %}
+
+    <p>Menu <------</p>
+</div>
+{% endblock %}

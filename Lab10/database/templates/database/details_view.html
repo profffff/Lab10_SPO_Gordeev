@@ -1,0 +1,20 @@
+{% extends 'main/layout.html' %}
+
+{% block title %}{{ article.title }}{% endblock %}
+
+{% block content %}
+<div class="features">
+    <br>
+    <form action="{% url 'my_books_request' article.id %}" method="post">
+    {% csrf_token %}
+    <input type="hidden" name="article_id" value="{{ article.id }}">
+    <button type="submit" class="btn btn-warning">Request the book</button>
+</form>
+    <h1>{{ article.autor }} : {{ article.title }}</h1>
+    <p>{{ article.anons }}</p>
+    {% if user.is_staff %}
+    <a href="{% url 'books-delete' article.id %}" class="btn btn-danger">Delete</a>
+    <a href="{% url 'books-update' article.id %}" class="btn btn-info">Edit</a>
+    {% endif %}
+</div>
+{% endblock %}

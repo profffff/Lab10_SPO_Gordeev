@@ -1,0 +1,23 @@
+.books_in_column {
+    display: flex;
+    flex-direction: column; /* Элементы выстраиваются в столбик */
+    align-items: start; /* Выравнивание элементов к началу контейнера */
+    padding: 20px; /* Отступ вокруг каждой книги */
+    margin: 20px 0; /* Отступ сверху и снизу для каждой книги */
+}
+
+.books_in_column h1 {
+    font-size: 1.5rem; /* Размер заголовка */
+    margin-bottom: 0.5rem; /* Отступ снизу для заголовка */
+    color: #fff; /* Цвет текста заголовка */
+}
+
+.books_in_column p {
+    font-size: 1rem; /* Размер текста описания */
+    color: #fff; /* Цвет текста описания */
+    margin-bottom: 1rem; /* Отступ снизу для описания */
+}
+
+.books_in_column a {
+    margin-right: 10px; /* Отступ справа для кнопок */
+}

@@ -1,0 +1,27 @@
+{% extends 'main/layout.html' %}
+{% load static %}
+
+{% block title %}<title>databasehome</title>{% endblock %}
+
+{% block content %}
+<link rel="stylesheet" href="{% static 'database/css/database.css' %}">
+
+<div class="books_in_column">
+    <h1>Form</h1>
+
+    <form method="post" enctype="multipart/form-data">
+ <h1>    {% csrf_token %}</h1>
+    <h1>{{ form.title }}</h1>    <br>
+    <h1>    {{ form.autor }}</h1>    <br>
+    <h1>   {{ form.anons }}</h1>    <br>
+     <h1>  {{ form.full_text_pdf }}</h1>    <br>
+     <h1>   {{ form.quantity }}</h1>    <br>
+
+
+        <span> {{ error }} </span>
+  <button class="btn btn-success" type="submit">Add</button>
+  </form>
+
+</div>
+
+{% endblock %}

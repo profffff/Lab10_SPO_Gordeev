@@ -1,0 +1,38 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>{% block title %}
+    {% endblock %}</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+     <link rel="stylesheet" href="{% static 'main/css/main.css' %}">
+    <link   rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+</head>
+<body>
+    <aside>
+        <img src="{% static 'main/png/digital_lib.png' %}" alt="Logo">
+        <span class="logo">Digital library</span>
+         <span class="user_info">Cur_user: {{ user }}</span>
+         <span class="user_info">admin: {{ user.is_staff }}</span>
+        <h3>Navigate</h3>
+        <ul>
+            <a href="{% url 'home' %}"><li><i class="fas fa-home"></i>Main</li></a>
+            <a href="{% url 'about' %}"><li><i class="fas fa-paper-plane"></i>About</li></a>
+            <a href="{% url 'database_home' %}"><li><i class="fas fa-paper-plane"></i>Database</li></a>
+            <a href="{% url 'my_books_request' %}"><li><i class="fas fa-paper-plane"></i>My books and requests</li></a>
+            <a href="{% url 'login' %}"><li><i class="fas fa-paper-plane"></i>Log out</li></a>
+            {% if user.is_staff %}
+            <a href="{% url 'create' %}"><li><i class="fas fa-plus-circle"></i>Add into db</li></a>
+            {% endif %}
+        </ul>
+    </aside>
+    <main>
+    {% block content %}
+    {% endblock %}
+    </main>
+</body>
+</html>

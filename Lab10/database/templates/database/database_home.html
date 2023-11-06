@@ -1,0 +1,31 @@
+{% extends 'main/layout.html' %}
+{% load static %}
+
+
+{% block title %}<title>databasehome</title>{% endblock %}
+
+
+{% block content %}
+<link rel="stylesheet" href="{% static 'database/css/database.css' %}">
+<div class="books_in_column">
+    <h1>Library search</h1>
+    <form method="get" action="{% url 'search_results' %}">
+    <input type="text" name="q" placeholder="Search for books">
+    <button type="submit">Search</button>
+    </form>
+    <br>
+
+    {% if articles %}
+        {% for article in articles %}
+     <h1>{{ article.autor }} : {{ article.title }} : {{ article.quantity }} left</h1>
+    <a href="{% url 'books-detail' article.id %}" class="btn btn-warning">View a short description</A><br>
+        {% endfor %}
+    {% endif %}
+
+
+    {% for el in databases %}
+    <h1>{{ el.autor }} : {{ el.title }} </h1>
+    <a href="{% url 'books-detail' el.id %}" class="btn btn-warning">View a short description</A><br>
+    {% endfor %}
+</div>
+{% endblock %}
