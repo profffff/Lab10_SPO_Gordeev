@@ -1,4 +1,9 @@
+body {
+margin-top: 100px;
+}
+
 .books_in_column {
+
     display: flex;
     flex-direction: column; /* Элементы выстраиваются в столбик */
     align-items: start; /* Выравнивание элементов к началу контейнера */
@@ -21,3 +26,7 @@
 .books_in_column a {
     margin-right: 10px; /* Отступ справа для кнопок */
 }
+
+.main .jump {
+        margin-top: 250px; /* Пример верхнего отступа */
+    }

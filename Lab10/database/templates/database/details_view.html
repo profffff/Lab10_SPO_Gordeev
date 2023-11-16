@@ -8,8 +8,11 @@
     <form action="{% url 'my_books_request' article.id %}" method="post">
     {% csrf_token %}
     <input type="hidden" name="article_id" value="{{ article.id }}">
-    <button type="submit" class="btn btn-warning">Request the book</button>
-</form>
+       {% if not user.is_staff %}
+    <button type="submit" name="action" value="assign" class="btn btn-warning">Добавить пользователю эту книгу</button>
+    <button type="submit" name="action" value="revoke" class="btn btn-warning">Отозвать книгу у пользователя</button>
+    {% endif %}
+    </form>
     <h1>{{ article.autor }} : {{ article.title }}</h1>
     <p>{{ article.anons }}</p>
     {% if user.is_staff %}

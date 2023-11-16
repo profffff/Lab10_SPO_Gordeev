@@ -13,23 +13,29 @@
     <link   rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 </head>
 <body>
-    <aside>
-        <img src="{% static 'main/png/digital_lib.png' %}" alt="Logo">
-        <span class="logo">Digital library</span>
-         <span class="user_info">Cur_user: {{ user }}</span>
-         <span class="user_info">admin: {{ user.is_staff }}</span>
-        <h3>Navigate</h3>
-        <ul>
-            <a href="{% url 'home' %}"><li><i class="fas fa-home"></i>Main</li></a>
-            <a href="{% url 'about' %}"><li><i class="fas fa-paper-plane"></i>About</li></a>
-            <a href="{% url 'database_home' %}"><li><i class="fas fa-paper-plane"></i>Database</li></a>
-            <a href="{% url 'my_books_request' %}"><li><i class="fas fa-paper-plane"></i>My books and requests</li></a>
-            <a href="{% url 'login' %}"><li><i class="fas fa-paper-plane"></i>Log out</li></a>
-            {% if user.is_staff %}
-            <a href="{% url 'create' %}"><li><i class="fas fa-plus-circle"></i>Add into db</li></a>
-            {% endif %}
-        </ul>
-    </aside>
+    <!-- Шапка сайта -->
+    <header class="site-header">
+        <div class="container">
+            <!-- <img src="{% static 'main/png/digital_lib.png' %}" alt="Logo" class="logo-image"> -->
+            <span class="logo-text">Библиотека</span>
+            <div class="user-info">
+
+            </div>
+            <nav class="header-nav">
+                <ul>
+                    <li><a href="{% url 'home' %}"><i class="fas fa-home"></i>Книги</a></li>
+                    <li><a href="{% url 'about' %}"><i ></i>О программе</a></li>
+                     {% if user.is_staff %}
+                    <li><a href="{% url 'create' %}"><i ></i>Добавить новую книгу</a></li>
+                    {% endif %}
+                    <li><a href="{% url 'login' %}"><i ></i>Выйти из аккаунта</a></li>
+
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <!-- Конец шапки сайта -->
+
     <main>
     {% block content %}
     {% endblock %}

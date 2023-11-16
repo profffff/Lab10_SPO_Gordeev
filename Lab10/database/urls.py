@@ -8,6 +8,6 @@ urlpatterns = [
     path('<int:pk>/update', views.BooksUpdateView.as_view(), name='books-update'),
     path('<int:pk>/delete', views.BooksDeleteView.as_view(), name='books-delete'),
     path('my_books_request/<int:article_id>/', views.ask_for_the_books, name='my_books_request'),
-    path('search/', views.SearchResultsView.as_view(), name='search_results'),
+    path('search/', views.SearchResultsView.as_view(), name='search_results')
 
 ]

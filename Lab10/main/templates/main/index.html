@@ -3,15 +3,31 @@
 {% block title %}<title>main</title>{% endblock %}
 
 {% block content %}
+{% load myfilters %}
+
+
+
+
 <div class="features">
-    <br>
-    <h1>{{ title }}</h1>
-    <button class="btn btn-warning">To about</button>
+    <div class="container">
+        <div class="book-grid">
+            <div class="book-gallery">
+                {% for el in databases %}
+            <!-- Повторить этот блок для каждой книги -->
+            <div class="book-card">
+                <img src="path_to_book_cover.jpg" alt="Book Cover">
+                <div class="book-title">{{ el.title }}</div>
+                <div class="book-author">
+                <a href="{% url 'books-detail' el.id %}">{{ el.autor }}</a>
+                </div>
+            </div>
+                 {% endfor %}
+                </div>
 
-    {% for el in values %}
-    <p>{{ el }}</p>
-    {% endfor %}
+        </div>
 
-    <p>Menu <------</p>
+    </div>
 </div>
+
+
 {% endblock %}

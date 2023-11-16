@@ -4,5 +4,7 @@
 
 {% block content %}
 <h1>About</h1>
-<p>About</p>
+<p><span>Аккаунт: {{ user }}</span>
+ <span>Модератор: {{ user.is_staff }}</span></p>
+
 {% endblock %}

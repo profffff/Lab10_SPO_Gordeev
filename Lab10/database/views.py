@@ -6,7 +6,6 @@ from django.contrib.auth.decorators import user_passes_test
 from django.contrib.auth.mixins import UserPassesTestMixin
 from django.db.models import Q
 from django.http import JsonResponse
-from books_request.models import Books_request
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.core.exceptions import ValidationError
@@ -23,7 +22,7 @@ class StaffRequiredMixin(UserPassesTestMixin):
 
 
 def database_home(request):
-    databases = Articles.objects.filter(quantity__gt=0)
+    databases = Articles.objects.all()
     return render(request, 'database/database_home.html', {'databases': databases})
 
 
@@ -49,18 +48,38 @@ class BooksDeleteView(StaffRequiredMixin, DeleteView):
 @login_required
 def ask_for_the_books(request, article_id):
     if request.method == 'POST':
-        user = User.objects.get(id=request.user.id)
-        article = Articles.objects.get(id=article_id)
-        # Проверяем, существует ли уже такая запись
-        books_request, created = Books_request.objects.get_or_create(
-            user=user,
-            book=article
-        )
+        action = request.POST.get("action")
+        if action == "assign":
+            users = User.objects.all()  # Получаем всех пользователей
+            return render(request, 'database/assign_book.html', {'users': users, 'book_id': article_id})
+        elif action == "revoke":
+            users_with_book = Articles.objects.filter(id=article_id, owner__isnull=False)  # Получаем всех пользователей
+            return render(request, 'database/revoke_book.html', {'users_with_book': users_with_book, 'book_id': article_id})
+        elif action[0] in '123456789':
+            book = Articles.objects.get(id=article_id)
+            user = User.objects.get(id=int(action))
+            if book.owner == user:
+                print('already')
+            else:
+                book.owner = user
+                book.save()
+                print(action)
+                print(article_id)
+                return redirect('home')
+        elif action[0] in '0':
+            action = action[1:]
+            book = Articles.objects.get(id=article_id)
+            book.owner = None
+            book.save()
+            print(action)
+            print(article_id)
+            return redirect('home')
+        created = None
         if created:
             # Если запись была создана, отправляем пользователя обратно на страницу книг с сообщением
            # print("Book added to your collection.")
             print("Request!")
-            books_request.save()
+           # books_request.save()
         else:
             # Если запись уже существует, сообщаем об этом пользователю
            # print("You already have this book in your collection.")
