@@ -1,0 +1,31 @@
+{% extends 'main/layout.html' %}
+
+{% block title %}{{ article.title }}{% endblock %}
+
+{% block content %}
+
+<style>
+    .jump {
+        margin-top: 250px; /* Пример верхнего отступа */
+    }
+</style>
+
+<div class="jump">
+    <form method="post">
+        {% csrf_token %}
+        {{ users_with_book|length}}
+        {% if users_with_book|length > 0 %}
+        <input type="hidden" name="book_id" value="{{ book_id }}">
+        <select name="user_id">
+
+            {% for user in users_with_book %}
+                <option value="{{ user.id }}">{{ user.owner }} : {{ user.id }}  </option>
+            {% endfor %}
+        </select>
+        <button data-value1=book_id type="submit" name="action"  value=0{{user.id}}>Забрать эту книгу у пользователя</button>
+         {% endif %}
+    </form>
+</div>
+
+
+{% endblock %}
